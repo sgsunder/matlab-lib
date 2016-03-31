@@ -3,6 +3,8 @@ function [ dirs ] = listDirs( parentDir )
 %   Input  = String describing parent directory (absolute or relative)
 %   Output = Cell Vector of sub directory (absolute paths)
 
+parentDir    = strrep(parentDir, ' ', '\ ');
+    %TODO Escape Characters in More General Case
 unixCommand  = sprintf('ls -1d %s/*/', parentDir);
 [~,lsReturn] = system(unixCommand);
 dirs         = textscan(lsReturn, '%s', 'Delimiter', '\n');
